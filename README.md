@@ -30,8 +30,7 @@ Para rodar o sistema, você precisa ter o **Go** (versão 1.18+) instalado.
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/seu-usuario/Zero-Budget-Hack.git](https://github.com/seu-usuario/Zero-Budget-Hack.git)
-    cd Zero-Budget-Hack
+    https://github.com/fernandathays95-blip/Open-SubGHz-Tool.git
     ```
 
 2.  **Baixe as dependências:**
