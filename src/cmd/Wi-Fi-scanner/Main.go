@@ -2,38 +2,40 @@ package main
 
 import (
 	"fmt"
+	"log"
+	
+	// Importamos a biblioteca gopacket pcap
+	"github.com/google/gopacket/pcap"
 )
 
-// O Scanner Wi-Fi precisará rodar com permissões de root/administrador
-// para acessar a interface de rede em modo monitor.
 func main() {
-	// -----------------------------------------------------------
-	// PASSO 1: Configuração Inicial
-	// Esta seção irá conter a lógica para verificar a interface Wi-Fi
-	// e garantir que ela possa entrar em Modo Monitor.
-	// -----------------------------------------------------------
-
 	fmt.Println("###################################################")
 	fmt.Println("# Sistema 'Zero-Budget-Hack' - Módulo Wi-Fi Scanner #")
 	fmt.Println("###################################################")
-	fmt.Println("")
 	
-	// Mensagem de teste
-	fmt.Println("Iniciando o sistema de análise de redes...")
-	
-	// -----------------------------------------------------------
-	// PASSO 2: Implementação da Captura de Pacotes
-	// É aqui que você importará bibliotecas como 'gopacket' para
-	// escutar os pacotes de beacon e extrair informações como
-	// SSID, MAC e força do sinal (RSSI).
-	// -----------------------------------------------------------
-	
-	// Exemplo de como seria o próximo passo (apenas um comentário guia)
-	//
-	// ifaces, err := net.Interfaces()
-	// for _, iface := range ifaces {
-	//     fmt.Printf("Interface encontrada: %s\n", iface.Name)
-	// }
+	fmt.Println("\nPASSOS PARA VER OS DISPOSITIVOS:")
+	fmt.Println("1. Listar Interfaces de Rede...")
 
-	fmt.Println("Escaneamento de teste concluído.")
+	// Lista todas as interfaces de rede disponíveis no sistema
+	devices, err := pcap.FindAllDevs()
+	if err != nil {
+		log.Fatal(err) // Se houver um erro, o programa para e mostra a mensagem.
+	}
+
+	// Itera sobre todas as interfaces encontradas e as imprime
+	fmt.Println("\nInterfaces Encontradas:")
+	for _, device := range devices {
+		// Esta linha nos ajuda a identificar o adaptador Wi-Fi correto
+		fmt.Printf("-> Nome: %s\n", device.Name) 
+		fmt.Printf("   Descrição: %s\n", device.Description)
+		
+		// Imprime os endereços IP associados à interface (se houver)
+		for _, addr := range device.Addresses {
+			fmt.Printf("   Endereço IP: %s\n", addr.IP)
+		}
+		fmt.Println("---")
+	}
+
+	fmt.Println("\n===================================================")
+	fmt.Println("PRÓXIMO PASSO: Escolha a interface Wi-Fi acima (Ex: wlan0 ou eth0).")
 }
