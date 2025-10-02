@@ -1,0 +1,29 @@
+# Arquivos gerados pelo Go (compilação e cache)
+# ----------------------------------------------
+*.exe
+*.bin
+*.out
+*.[oa]
+
+# Binários executáveis para diferentes sistemas operacionais
+# (Apenas o seu código-fonte deve ser versionado, não os binários compilados)
+/bin/
+
+# Cache de testes do Go
+/pkg/
+
+# Pasta onde os arquivos binários do seu programa seriam colocados
+/build/
+/dist/
+
+# Dependências (vendor)
+# A pasta vendor não é necessária se você usar 'go mod'
+/vendor/
+
+# Arquivos de IDEs (Opcional, mas recomendado)
+# Exemplo para Visual Studio Code:
+.vscode/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
